@@ -13,6 +13,7 @@ export default function HomePage() {
           <a href="#about" className="hover:text-blue-500">About</a>
           <a href="#services" className="hover:text-blue-500">Services</a>
           <a href="#projects" className="hover:text-blue-500">Projects</a>
+          <a href="#booking" className="hover:text-blue-500">Book</a>
           <a href="#contact" className="hover:text-blue-500">Contact</a>
         </nav>
       </header>
@@ -64,6 +65,22 @@ export default function HomePage() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Booking Section */}
+      <section id="booking" className="bg-white px-6 py-16 text-center">
+        <h3 className="text-3xl font-bold mb-4">Book an Appointment</h3>
+        <p className="mb-6 text-gray-700 max-w-xl mx-auto">
+          Want to discuss a Salesforce project or just explore how we can collaborate? Choose a time that works for you.
+        </p>
+        <a
+          href="https://calendar.google.com/calendar/appointments/schedules/your-schedule-id" // Replace with actual Google appointment link
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700 transition"
+        >
+          Book a Free Consultation
+        </a>
       </section>
 
       {/* Contact */}
