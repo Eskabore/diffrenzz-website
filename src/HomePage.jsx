@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Header from "./components/sections/Header";
 import Hero from "./components/sections/Hero";
-
+import Services from "./components/sections/Service";
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,12 +25,16 @@ export default function HomePage() {
   return (
     <div className="font-sans text-gray-800 bg-white">
       {/* Header */}
-    
-
       {/* Hero */}
-
+      {/* Services */}
+      {/* Projects */}
+      {/* Booking Section */}
+      {/* Contact */}
+      {/* Footer */}
       <Header />
       <Hero />
+      <Services />
+
 
       {/* About */}
       <motion.section 
@@ -61,70 +65,7 @@ export default function HomePage() {
       </motion.section>
 
       {/* Services */}
-      <motion.section 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={staggerContainer}
-        id="services" 
-        className="px-6 py-20 bg-gradient-to-b from-gray-50 to-white"
-      >
-        <div className="max-w-6xl mx-auto">
-          <motion.h3 variants={fadeInUp} className="text-3xl font-bold text-center mb-4">
-            My <span className="text-green-600">Services</span>
-          </motion.h3>
-          
-          <motion.p variants={fadeInUp} className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Comprehensive Salesforce solutions tailored to your business needs
-          </motion.p>
-          
-          <motion.div variants={staggerContainer} className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Salesforce Admin & Setup",
-                description: "Professional setup and customizations tailored to your needs.",
-                icon: "🛠️"
-              },
-              {
-                title: "Flow Automation",
-                description: "Streamline processes with powerful automation workflows.",
-                icon: "⏩"
-              },
-              {
-                title: "Apex & LWC Development",
-                description: "Custom solutions built with Salesforce's powerful development tools.",
-                icon: "💻"
-              },
-              {
-                title: "API Integrations",
-                description: "Connect Salesforce with your other business systems seamlessly.",
-                icon: "🔗"
-              },
-              {
-                title: "Experience Cloud",
-                description: "Build engaging portals for your customers and partners.",
-                icon: "🌐"
-              },
-              {
-                title: "Project Dashboards",
-                description: "Visualize your data with powerful, actionable insights.",
-                icon: "📊"
-              }
-            ].map((service, index) => (
-              <motion.div 
-                key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -5 }}
-                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 transition-all"
-              >
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h4 className="font-semibold text-xl mb-3 text-gray-800">{service.title}</h4>
-                <p className="text-gray-600">{service.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
+      
 
       {/* Projects */}
       <motion.section 
