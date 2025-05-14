@@ -83,43 +83,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero */}
-      <motion.section 
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
-        className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-600 via-green-500 to-teal-400 text-white text-center px-4 relative overflow-hidden"
-      >
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-white filter blur-3xl opacity-20"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-white filter blur-3xl opacity-20"></div>
-        </div>
-        
-        <motion.h2 variants={fadeInUp} className="text-4xl md:text-6xl font-bold mb-6">
-          Smart <span className="text-yellow-300">Salesforce</span> Solutions
-        </motion.h2>
-        
-        <motion.p variants={fadeInUp} className="text-xl md:text-3xl mb-8 max-w-2xl">
-          Tailored development, automation & consulting that drives results
-        </motion.p>
-        
-        <motion.div variants={fadeInUp}>
-          <a 
-            href="#contact" 
-            className="inline-block bg-white text-gray-900 px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 font-medium"
-          >
-            Let's Talk
-          </a>
-        </motion.div>
-        
-        <motion.div 
-          variants={fadeInUp}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </motion.div>
-      </motion.section>
+      <Hero />
 
       {/* About */}
       <motion.section 
