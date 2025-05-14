@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Header from "./components/sections/Header";
 import Hero from "./components/sections/Hero";
 import Services from "./components/sections/Service";
+import About from "./components/sections/About";
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -34,35 +35,10 @@ export default function HomePage() {
       <Header />
       <Hero />
       <Services />
+      <About />
 
 
-      {/* About */}
-      <motion.section 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-        id="about" 
-        className="px-6 py-20 max-w-4xl mx-auto"
-      >
-        <motion.h3 variants={fadeInUp} className="text-3xl font-bold mb-6 text-center">
-          About <span className="text-blue-600">Diffrenzz</span>
-        </motion.h3>
-        
-        <motion.div variants={fadeInUp} className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-          <p className="text-lg leading-relaxed text-gray-700">
-            At Diffrenzz, I help businesses unleash the full power of Salesforce by delivering custom solutions, intelligent automation, and strategic consulting. From solo projects to large-scale integrations, every build is optimized for performance, usability, and scale.
-          </p>
-          
-          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {['5+ Years Experience', '50+ Projects', '100% Satisfaction', '24/7 Support'].map((item, index) => (
-              <div key={index} className="bg-gray-50 p-4 rounded-lg text-center">
-                <p className="font-medium text-gray-800">{item}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </motion.section>
+      
 
       {/* Services */}
       
