@@ -4,6 +4,8 @@ import Header from "./components/sections/Header";
 import Hero from "./components/sections/Hero";
 import Services from "./components/sections/Service";
 import About from "./components/sections/About";
+import Projects from "./components/sections/Project";
+
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -36,64 +38,8 @@ export default function HomePage() {
       <Hero />
       <Services />
       <About />
+      <Projects />
 
-
-      
-
-      {/* Services */}
-      
-
-      {/* Projects */}
-      <motion.section 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={staggerContainer}
-        id="projects" 
-        className="px-6 py-20 max-w-6xl mx-auto"
-      >
-        <motion.h3 variants={fadeInUp} className="text-3xl font-bold text-center mb-4">
-          Featured <span className="text-purple-600">Projects</span>
-        </motion.h3>
-        
-        <motion.p variants={fadeInUp} className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Some of my recent work delivering value through Salesforce
-        </motion.p>
-        
-        <motion.div variants={staggerContainer} className="grid md:grid-cols-2 gap-8">
-          {[
-            {
-              title: "Sales Process Automation",
-              description: "Automated the entire sales process for a mid-sized manufacturer, reducing manual work by 80% and improving deal velocity.",
-              tags: ["Sales Cloud", "Flow", "Custom Objects"],
-              color: "bg-blue-100 text-blue-800"
-            },
-            {
-              title: "Customer Portal Implementation",
-              description: "Built an Experience Cloud portal for a service company, enabling 24/7 self-service for their clients.",
-              tags: ["Experience Cloud", "LWC", "Apex"],
-              color: "bg-green-100 text-green-800"
-            }
-          ].map((project, index) => (
-            <motion.div 
-              key={index}
-              variants={fadeInUp}
-              whileHover={{ scale: 1.02 }}
-              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 transition-all"
-            >
-              <h4 className="font-semibold text-xl mb-3 text-gray-800">{project.title}</h4>
-              <p className="text-gray-600 mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag, i) => (
-                  <span key={i} className={`px-3 py-1 rounded-full text-sm ${project.color}`}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.section>
 
       {/* Booking Section */}
       <motion.section 
