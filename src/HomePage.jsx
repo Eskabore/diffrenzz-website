@@ -5,7 +5,7 @@ import Hero from "./components/sections/Hero";
 import Services from "./components/sections/Service";
 import About from "./components/sections/About";
 import Projects from "./components/sections/Project";
-
+import Bookings from "./components/sections/Booking";
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -39,38 +39,9 @@ export default function HomePage() {
       <Services />
       <About />
       <Projects />
+      <Bookings />
 
 
-      {/* Booking Section */}
-      <motion.section 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={staggerContainer}
-        id="booking" 
-        className="px-6 py-20 bg-gradient-to-b from-white to-gray-50 text-center"
-      >
-        <div className="max-w-xl mx-auto">
-          <motion.h3 variants={fadeInUp} className="text-3xl font-bold mb-6">
-            Ready to <span className="text-green-600">Get Started</span>?
-          </motion.h3>
-          
-          <motion.p variants={fadeInUp} className="mb-8 text-gray-700">
-            Want to discuss a Salesforce project or just explore how we can collaborate? Choose a time that works for you.
-          </motion.p>
-          
-          <motion.div variants={fadeInUp}>
-            <a
-              href="https://calendly.com/your-link" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-green-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:bg-green-700 transition-all duration-300 font-medium"
-            >
-              Book a Free Consultation
-            </a>
-          </motion.div>
-        </div>
-      </motion.section>
 
       {/* Contact */}
       <motion.section 
