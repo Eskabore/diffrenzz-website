@@ -57,7 +57,7 @@ const Header = () => {
               className="flex items-center space-x-2"
             >
               <img 
-                src="/android-chrome-512x512.png" 
+                src="/newLogo512.svg" 
                 alt="Diffrenzz Logo" 
                 className="h-10 w-10 transition-transform hover:rotate-[15deg]" 
               />
