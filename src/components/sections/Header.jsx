@@ -48,8 +48,8 @@ const Header = () => {
           isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-white/80 backdrop-blur-sm"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center py-4">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-between items-center py-3">
             {/* Logo */}
             <motion.a 
               href="#"
