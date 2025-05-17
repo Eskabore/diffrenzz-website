@@ -1,11 +1,17 @@
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { scrollY } = useScroll();
+
+    const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 10);
@@ -111,7 +117,7 @@ const Header = () => {
         {/* Scroll Progress Indicator */}
         <motion.div
           className="h-0.5 bg-blue-500 origin-left"
-          style={{ scaleX: scrollY }}
+          style={{ scaleX }}
         />
       </motion.header>
 
