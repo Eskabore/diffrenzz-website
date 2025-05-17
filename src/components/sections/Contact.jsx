@@ -19,24 +19,25 @@ const Contact = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
-  // Mobile form field focus fix
+  // Unified focus handler for all screen sizes
   useEffect(() => {
-    const inputs = formRef.current?.querySelectorAll('input, textarea, select');
-    inputs?.forEach(input => {
-      const handleFocus = () => {
+    const handleFocus = (e) => {
+      if (window.innerWidth <= 1024) { // Handles both mobile and small desktop
         setTimeout(() => {
-          input.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'center'
+          e.target.scrollIntoView({
+            block: 'nearest',
+            behavior: 'smooth'
           });
-        }, 300);
-      };
-      input.addEventListener('focus', handleFocus);
-      
-      return () => {
-        input.removeEventListener('focus', handleFocus);
-      };
-    });
+        }, 100);
+      }
+    };
+
+    const inputs = formRef.current?.querySelectorAll('input, textarea, select');
+    inputs?.forEach(input => input.addEventListener('focus', handleFocus));
+
+    return () => {
+      inputs?.forEach(input => input.removeEventListener('focus', handleFocus));
+    };
   }, []);
 
   const fadeInUp = {
@@ -69,9 +70,7 @@ const Contact = () => {
         })
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      }
+      if (!response.ok) throw new Error('Failed to submit form');
 
       setIsSubmitted(true);
       reset();
@@ -99,8 +98,14 @@ const Contact = () => {
     }
   ];
 
+  // Reusable form field classes
+  const inputClasses = (hasError) => 
+    `w-full px-4 py-3 rounded-lg bg-gray-700 border ${
+      hasError ? "border-red-500" : "border-gray-600"
+    } focus:ring-2 focus:ring-blue-500 focus:border-transparent`;
+
   return (
-    <section id="contact" className="py-20 px-6 bg-gray-900 text-white">
+    <section id="contact" className="pt-28 pb-20 px-6 bg-gray-900 text-white">
       <div className="max-w-4xl mx-auto">
         <motion.div 
           initial="hidden"
@@ -150,9 +155,7 @@ const Contact = () => {
                     <input
                       id="firstName"
                       {...register("firstName", { required: "First name is required" })}
-                      className={`w-full px-4 py-3 rounded-lg bg-gray-700 border ${
-                        errors.firstName ? "border-red-500" : "border-gray-600"
-                      } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+                      className={inputClasses(errors.firstName)}
                     />
                     {errors.firstName && (
                       <p className="mt-1 text-sm text-red-400">{errors.firstName.message}</p>
@@ -166,9 +169,7 @@ const Contact = () => {
                     <input
                       id="lastName"
                       {...register("lastName", { required: "Last name is required" })}
-                      className={`w-full px-4 py-3 rounded-lg bg-gray-700 border ${
-                        errors.lastName ? "border-red-500" : "border-gray-600"
-                      } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+                      className={inputClasses(errors.lastName)}
                     />
                     {errors.lastName && (
                       <p className="mt-1 text-sm text-red-400">{errors.lastName.message}</p>
@@ -184,7 +185,7 @@ const Contact = () => {
                   <input
                     id="company"
                     {...register("company")}
-                    className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={inputClasses(false)}
                   />
                 </div>
 
@@ -202,9 +203,7 @@ const Contact = () => {
                         message: "Invalid email address"
                       }
                     })}
-                    className={`w-full px-4 py-3 rounded-lg bg-gray-700 border ${
-                      errors.email ? "border-red-500" : "border-gray-600"
-                    } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+                    className={inputClasses(errors.email)}
                   />
                   {errors.email && (
                     <p className="mt-1 text-sm text-red-400">{errors.email.message}</p>
@@ -218,9 +217,7 @@ const Contact = () => {
                   <select
                     id="subject"
                     {...register("subject", { required: "Subject is required" })}
-                    className={`w-full px-4 py-3 rounded-lg bg-gray-700 border ${
-                      errors.subject ? "border-red-500" : "border-gray-600"
-                    } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+                    className={inputClasses(errors.subject)}
                   >
                     <option value="">Select a topic</option>
                     <option value="Consultation">Salesforce Consultation</option>
@@ -247,9 +244,7 @@ const Contact = () => {
                         message: "Message must be at least 20 characters"
                       }
                     })}
-                    className={`w-full px-4 py-3 rounded-lg bg-gray-700 border ${
-                      errors.message ? "border-red-500" : "border-gray-600"
-                    } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+                    className={inputClasses(errors.message)}
                   />
                   {errors.message && (
                     <p className="mt-1 text-sm text-red-400">{errors.message.message}</p>
