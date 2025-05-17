@@ -6,13 +6,15 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-    const { scrollYProgress } = useScroll();
+  // Get both scrollY and scrollYProgress
+  const { scrollY, scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
 
+  // Track scroll position for header background
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 10);
   });
@@ -45,7 +47,6 @@ const Header = () => {
 
   return (
     <>
-      {/* Desktop Header */}
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -56,7 +57,6 @@ const Header = () => {
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-3">
-            {/* Logo */}
             <motion.a 
               href="#"
               whileHover={{ scale: 1.05 }}
@@ -75,7 +75,6 @@ const Header = () => {
               </motion.h1>
             </motion.a>
 
-            {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
               {navItems.map((item, index) => (
                 <motion.a
@@ -98,7 +97,6 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Mobile Menu Button */}
             <motion.button
               whileTap={{ scale: 0.95 }}
               className="md:hidden p-2 rounded-md focus:outline-none text-gray-700"
@@ -114,14 +112,12 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Scroll Progress Indicator */}
         <motion.div
           className="h-0.5 bg-blue-500 origin-left"
           style={{ scaleX }}
         />
       </motion.header>
 
-      {/* Mobile Menu */}
       <motion.div
         initial={false}
         animate={mobileMenuOpen ? "open" : "closed"}
