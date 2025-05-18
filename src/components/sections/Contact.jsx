@@ -18,6 +18,7 @@ const Contact = () => {
   const formRef = useRef(null);
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+  const xanoEndpoint = import.meta.env.VITE_XANO_ENDPOINT;
 
   // Unified focus handler for all screen sizes
   useEffect(() => {
@@ -54,7 +55,7 @@ const Contact = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:4lBfxF-J/submit-lead', {
+      const response = await fetch(xanoEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
