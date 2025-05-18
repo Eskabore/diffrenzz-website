@@ -88,14 +88,14 @@ const Contact = () => {
     {
       icon: <EnvelopeIcon className="w-6 h-6 text-blue-600" />,
       title: "Email Us",
-      description: "hello@diffrenzz.com",
-      action: "mailto:hello@diffrenzz.com"
+      description: "desk@diffrenzz.com",
+      action: "mailto:desk@diffrenzz.com"
     },
     {
       icon: <PhoneIcon className="w-6 h-6 text-green-600" />,
       title: "Call Us",
-      description: "+1 (555) 123-4567",
-      action: "tel:+15551234567"
+      description: "+49 (0) 1 6344-82005",
+      action: "tel:+491634482005"
     }
   ];
 
@@ -314,7 +314,7 @@ const Contact = () => {
                 <ClockIcon className="w-6 h-6 text-blue-400 flex-shrink-0" />
                 <div>
                   <h4 className="font-bold mb-2">Working Hours</h4>
-                  <p className="text-gray-300 mb-1">Monday - Friday: 9am - 6pm PST</p>
+                  <p className="text-gray-300 mb-1">Monday - Friday: 9am - 6pm CET</p>
                   <p className="text-gray-300">Weekends: Emergency support only</p>
                 </div>
               </div>
