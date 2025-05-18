@@ -4,7 +4,11 @@ import { ArrowDownIcon } from "@heroicons/react/24/outline";
 const Hero = () => {
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
   };
 
   const staggerContainer = {
@@ -12,66 +16,97 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.15,
+        delayChildren: 0.2
       }
     }
   };
 
   return (
-    <motion.section 
+    <motion.section
       initial="hidden"
       animate="visible"
       variants={staggerContainer}
-      className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-20"
+      style={{ zIndex: 0 }}
     >
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-green-500 to-teal-400 -z-10"
+        style={{ zIndex: -1 }}
+      />
+
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-white filter blur-3xl opacity-20 animate-float-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-white filter blur-3xl opacity-20 animate-float"></div>
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-white filter blur-3xl opacity-20"
+          animate={{
+            y: [0, -20, 0],
+            x: [0, -10, 0]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-white filter blur-3xl opacity-20"
+          animate={{
+            y: [0, 20, 0],
+            x: [0, 10, 0]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
       </div>
-      
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-green-500 to-teal-400 -z-10"></div>
-      
+
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto">
-        <motion.h1 
+      <div className="relative z-10 max-w-4xl mx-auto px-4">
+        <motion.h1
           variants={fadeInUp}
-          className="text-4xl md:text-6xl font-bold mb-6 text-white"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight"
         >
           Smart <span className="text-yellow-300">Salesforce</span> Solutions
         </motion.h1>
-        
-        <motion.p 
+
+        <motion.p
           variants={fadeInUp}
-          className="text-xl md:text-3xl mb-8 text-white/90 max-w-2xl mx-auto"
+          className="text-xl md:text-2xl lg:text-3xl mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed"
         >
           Tailored development, automation & consulting that drives results
         </motion.p>
-        
+
         <motion.div variants={fadeInUp}>
-          <motion.a 
+          <motion.a
             href="#contact"
-            whileHover={{ 
+            whileHover={{
               scale: 1.05,
-              boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)"
+              boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.15)"
             }}
             whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            className="inline-block bg-white text-gray-900 px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 10
+            }}
+            className="inline-block bg-white text-gray-900 px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium text-lg"
           >
             Let's Talk
           </motion.a>
         </motion.div>
       </div>
-      
+
       {/* Scroll indicator */}
-      <motion.div 
+      <motion.div
         variants={fadeInUp}
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         animate={{
-          y: [0, 10, 0],
-          opacity: [1, 0.7, 1]
+          y: [0, 15, 0],
+          opacity: [1, 0.5, 1]
         }}
         transition={{
           duration: 2,
