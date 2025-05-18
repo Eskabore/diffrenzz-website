@@ -20,9 +20,11 @@ const Projects = () => {
   const projects = [
     {
       title: "Manufacturing Process Automation",
-      description: "Automated the entire quote-to-cash process for a mid-sized manufacturer, reducing manual work by 80% and improving deal velocity by 40%.",
+      description: "Automated the entire quote-to-cash process for a mid-sized manufacturer, improving deal velocity by 40%.",
       tags: ["Sales Cloud", "Flow", "CPQ"],
       icon: <ArrowsRightLeftIcon className="w-8 h-8 text-blue-600" />,
+      iconBg: "bg-blue-50", // Added specific background
+      metricBg: "bg-blue-50 text-blue-800", // Added for metrics
       results: [
         { metric: "80%", label: "Reduction in manual work" },
         { metric: "40%", label: "Faster deal processing" }
@@ -33,6 +35,8 @@ const Projects = () => {
       description: "Built a custom donor management solution with automated receipting and campaign tracking, helping process 2x more donations.",
       tags: ["Nonprofit Cloud", "LWC", "Apex Triggers"],
       icon: <CpuChipIcon className="w-8 h-8 text-purple-600" />,
+      iconBg: "bg-purple-50",
+      metricBg: "bg-purple-50 text-purple-800",
       results: [
         { metric: "2x", label: "More donations processed" },
         { metric: "90%", label: "Faster receipt generation" }
@@ -43,6 +47,8 @@ const Projects = () => {
       description: "Developed a mobile-optimized solution for field technicians with offline capabilities, reducing service resolution time by 35%.",
       tags: ["Field Service", "Mobile", "LWC"],
       icon: <CodeBracketIcon className="w-8 h-8 text-green-600" />,
+      iconBg: "bg-green-50",
+      metricBg: "bg-green-50 text-green-800",
       results: [
         { metric: "35%", label: "Faster resolution" },
         { metric: "60%", label: "Fewer callbacks" }
@@ -81,11 +87,11 @@ const Projects = () => {
                 y: -5,
                 boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)"
               }}
-              className="bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-blue-100 transition-all duration-300"
+              className="bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-transparent transition-all duration-300"
             >
               <div className="p-8">
                 <div className="flex items-start space-x-4 mb-6">
-                  <div className="p-3 rounded-lg bg-blue-50">
+                  <div className={`p-3 rounded-lg ${project.iconBg}`}>
                     {project.icon}
                   </div>
                   <h3 className="text-xl font-bold text-gray-800">{project.title}</h3>
@@ -96,7 +102,7 @@ const Projects = () => {
                 <div className="mb-6 space-y-4">
                   {project.results.map((result, i) => (
                     <div key={i} className="flex items-center space-x-3">
-                      <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
+                      <div className={`w-10 h-10 rounded-full ${project.metricBg} flex items-center justify-center font-bold`}>
                         {result.metric}
                       </div>
                       <span className="text-sm text-gray-600">{result.label}</span>
@@ -127,7 +133,7 @@ const Projects = () => {
           ))}
         </motion.div>
 
-        {/* Client logos section (optional) */}
+        {/* Client logos section */}
         <motion.div 
           variants={fadeInUp}
           className="mt-20 text-center"
