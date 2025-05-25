@@ -1,39 +1,56 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <!-- CookieYes (with auto-blocking) - MUST load first -->
-  <script id="cookieyes" type="text/javascript"
-    src="https://cdn-cookieyes.com/client_data/0308e4aef26b935902d96e93/script.js" data-blockingmode="auto"
-    data-website-id="0308e4aef26b935902d96e93" data-website-name="Diffrenzz Consulting"
-    data-website-url="https://diffrenzz.com/"
-    data-website-description="Professional Salesforce consulting services with tailored CRM solutions, automation, and system integration for your business growth.">
-    </script>
+  <!-- CookieYes Consent Management (Must load first) -->
+  <script id="cookieyes" 
+          type="text/javascript" 
+          src="https://cdn-cookieyes.com/client_data/0308e4aef26b935902d96e93/script.js" 
+          data-blockingmode="auto"
+          data-website-id="0308e4aef26b935902d96e93"
+          data-website-name="Diffrenzz Consulting"
+          data-website-url="https://diffrenzz.com/"
+          data-website-description="Professional Salesforce consulting services">
+  </script>
+
+  <!-- Initialize Data Layer with Default Consent -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'gtm.consent': {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'denied',
+        'personalization_storage': 'denied',
+        'security_storage': 'granted'
+      },
+      'event': 'cookieyes_consent_default'
+    });
+  </script>
 
   <!-- Primary Meta Tags -->
   <title>Diffrenzz | Salesforce Consulting & Implementation Experts</title>
-  <meta name="description"
-    content="Professional Salesforce consulting services with tailored CRM solutions, automation, and system integration for your business growth.">
+  <meta name="description" content="Professional Salesforce consulting services with tailored CRM solutions, automation, and system integration for your business growth.">
   <meta name="keywords" content="Salesforce, CRM, Consulting, Implementation, Automation, Integration, Cloud">
   <meta name="author" content="Diffrenzz Consulting">
+  <meta name="robots" content="index, follow">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://diffrenzz.com/">
   <meta property="og:title" content="Diffrenzz | Salesforce Consulting Experts">
-  <meta property="og:description"
-    content="Professional Salesforce consulting services with tailored CRM solutions for your business.">
+  <meta property="og:description" content="Professional Salesforce consulting services with tailored CRM solutions for your business.">
   <meta property="og:image" content="https://diffrenzz.com/social-preview.jpg">
+  <meta property="og:image:alt" content="Diffrenzz Salesforce Consulting Services">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://diffrenzz.com/">
   <meta property="twitter:title" content="Diffrenzz | Salesforce Consulting Experts">
-  <meta property="twitter:description"
-    content="Professional Salesforce consulting services with tailored CRM solutions for your business.">
+  <meta property="twitter:description" content="Professional Salesforce consulting services with tailored CRM solutions for your business.">
   <meta property="twitter:image" content="https://diffrenzz.com/social-preview.jpg">
 
   <!-- Favicons -->
@@ -46,57 +63,59 @@
 
   <!-- Theme Color -->
   <meta name="theme-color" content="#1e40af">
+  <meta name="msapplication-TileColor" content="#1e40af">
 
-  <!-- Initialize dataLayer with default consent (deny all) -->
+  <!-- Google Tag Manager (Consent-Driven Load) -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      'event': 'cookieyes_consent_update',
-      'detail': { 'acceptedCategories': [] }
-    });
-  </script>
-
-  <!-- Google Tag Manager (head) - Modified for consent -->
-  <script>
-    document.addEventListener('cookieyes_consent_update', function (event) {
-      const categories = event.detail?.acceptedCategories;
-      if (Array.isArray(categories) && categories.includes('analytics')) {
-        (function (w, d, s, l, i) {
-          w[l] = w[l] || [];
-          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-          var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l !== 'dataLayer' ? '&l=' + l : '';
-          j.async = true;
-          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-          f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PCGRHPNN');
+    document.addEventListener('cookieyes_consent_update', function(event) {
+      try {
+        const consent = event.detail?.acceptedCategories || [];
+        if(Array.isArray(consent) && consent.includes('analytics')) {
+          (function(w,d,s,l,i){
+            w[l]=w[l]||[];
+            w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),
+                dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true;
+            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-PCGRHPNN');
+        }
+      } catch(e) {
+        console.error('GTM Load Error:', e);
       }
     });
   </script>
 
-  <!-- CSS -->
-  <link href="/src/index.css" rel="stylesheet">
+  <!-- Critical CSS -->
+  <link href="/src/index.css" rel="stylesheet" media="all">
 </head>
 
-<body>
-  <!-- Google Tag Manager (noscript fallback) -->
+<body class="bg-gray-900 text-gray-100">
+  <!-- Google Tag Manager (noscript) -->
   <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCGRHPNN" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCGRHPNN"
+            height="0" width="0" 
+            style="display:none;visibility:hidden"
+            aria-hidden="true">
+    </iframe>
   </noscript>
 
-  <!-- App Root -->
+  <!-- App Container -->
   <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
 
-  <!-- NoScript Warning -->
+  <!-- Main Script Bundle -->
+  <script type="module" src="/src/main.jsx" defer></script>
+
+  <!-- Progressive Enhancement Fallbacks -->
   <noscript>
-    <div
-      style="position:fixed;bottom:0;background:#fff;padding:20px;width:100%;z-index:9999;border-top:1px solid #ddd;text-align:center;">
-      <p>⚠️ This website requires JavaScript to function properly. Please enable JavaScript to continue.</p>
+    <div class="fixed inset-x-0 bottom-0 bg-white p-4 text-center shadow-lg">
+      <p class="text-red-600 font-medium">
+        ⚠️ JavaScript is required for full site functionality. 
+        <a href="/enable-javascript" class="text-blue-600 hover:underline">Learn how to enable it</a>.
+      </p>
     </div>
   </noscript>
 </body>
-
 </html>
