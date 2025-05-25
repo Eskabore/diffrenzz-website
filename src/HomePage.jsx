@@ -56,7 +56,7 @@ export default function HomePage() {
           <p>© {new Date().getFullYear()} Diffrenzz. All rights reserved.</p>
           <div className="mt-2 flex justify-center space-x-4">
             <a href="/privacy-policy.html" className="hover:text-gray-700">Privacy Policy</a>
-            <a href="#" className="hover:text-gray-700">Terms of Service</a>
+            <a href="/cookie-policy.html" className="hover:text-gray-700">Terms of Service</a>
           </div>
         </div>
       </motion.footer>
