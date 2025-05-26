@@ -52,6 +52,15 @@ const Contact = () => {
             return;
         }
 
+        // Double-check GDPR consent client-side
+        if (!data.gdprConsent) {
+            setError('gdprConsent', {
+                type: 'manual',
+                message: 'You must accept the privacy policy to proceed'
+            });
+            return;
+        }
+
         setIsLoading(true);
 
         try {
@@ -69,18 +78,36 @@ const Contact = () => {
                     message: data.message,
                     gdprConsent: data.gdprConsent,
                     consentTimestamp: new Date().toISOString(),
-                    recaptchaToken
+                    recaptchaToken,
+                    userAgent: navigator.userAgent,
+                    ipAddress: '' // Xano will capture this from headers
                 })
             });
 
-            if (!response.ok) throw new Error('Failed to submit form');
+            const result = await response.json();
+
+            if (!response.ok) {
+                // Handle Xano's GDPR validation errors
+                if (result.error === "GDPR_CONSENT_REQUIRED") {
+                    throw new Error(result.message);
+                }
+                throw new Error(result.message || 'Failed to submit form');
+            }
 
             setIsSubmitted(true);
             reset();
             setRecaptchaToken(null);
         } catch (error) {
             console.error('Submission error:', error);
-            alert('Error submitting form. Please try again later.');
+            // Special handling for GDPR errors
+            if (error.message.includes('privacy policy')) {
+                setError('gdprConsent', {
+                    type: 'manual',
+                    message: error.message
+                });
+            } else {
+                alert(error.message || 'Error submitting form. Please try again later.');
+            }
         } finally {
             setIsLoading(false);
         }
@@ -260,64 +287,71 @@ const Contact = () => {
                                     transition={{ delay: 0.2 }}
                                     className="mt-4"
                                 >
-                                    <div className="flex items-start">
-                                        <input
-                                            id="gdpr-consent"
-                                            type="checkbox"
-                                            {...register("gdprConsent", {
-                                                required: "You must accept the privacy policy to proceed"
-                                            })}
-                                            className={`mt-1 h-4 w-4 rounded ${errors.gdprConsent ? 'border-red-500' : 'border-gray-300'} focus:ring-blue-500 text-blue-600`}
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.2 }}
+                                        className="mt-4"
+                                    >
+                                        <div className="flex items-start">
+                                            <input
+                                                id="gdpr-consent"
+                                                type="checkbox"
+                                                {...register("gdprConsent", {
+                                                    required: "You must accept the privacy policy to proceed"
+                                                })}
+                                                className={`mt-1 h-4 w-4 rounded ${errors.gdprConsent ? 'border-red-500' : 'border-gray-300'
+                                                    } focus:ring-blue-500 text-blue-600`}
+                                            />
+                                            <label htmlFor="gdpr-consent" className="ml-2 block text-sm text-gray-300">
+                                                I consent to the processing of my personal data according to the{' '}
+                                                <a
+                                                    href="/privacy-policy"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-blue-400 hover:underline"
+                                                >
+                                                    Privacy Policy
+                                                </a>. *
+                                            </label>
+                                        </div>
+                                        {errors.gdprConsent && (
+                                            <p className="mt-1 text-sm text-red-400">{errors.gdprConsent.message}</p>
+                                        )}
+                                    </motion.div>
+
+                                    <div className="mt-4">
+                                        <ReCAPTCHA
+                                            sitekey={siteKey}
+                                            onChange={(token) => setRecaptchaToken(token)}
+                                            onExpired={() => setRecaptchaToken(null)}
+                                            onErrored={() => setRecaptchaToken(null)}
                                         />
-                                        <label htmlFor="gdpr-consent" className="ml-2 block text-sm text-gray-300">
-                                            I consent to the processing of my personal data according to the{' '}
-                                            <a
-                                                href="/privacy-policy"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-blue-400 hover:underline"
-                                            >
-                                                Privacy Policy
-                                            </a>. *
-                                        </label>
                                     </div>
-                                    {errors.gdprConsent && (
-                                        <p className="mt-1 text-sm text-red-400">{errors.gdprConsent.message}</p>
-                                    )}
-                                </div>
-
-                                <div className="mt-4">
-                                    <ReCAPTCHA
-                                        sitekey={siteKey}
-                                        onChange={(token) => setRecaptchaToken(token)}
-                                        onExpired={() => setRecaptchaToken(null)}
-                                        onErrored={() => setRecaptchaToken(null)}
-                                    />
-                                </div>
 
 
-                                <motion.button
-                                    type="submit"
-                                    disabled={isLoading}
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="w-full bg-blue-600 text-white px-6 py-4 rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center justify-center disabled:opacity-70 mt-6"
-                                >
-                                    {isLoading ? (
-                                        <span className="flex items-center">
-                                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                            </svg>
-                                            Processing...
-                                        </span>
-                                    ) : (
-                                        <>
-                                            Send Message
-                                            <ArrowRightIcon className="w-5 h-5 ml-2" />
-                                        </>
-                                    )}
-                                </motion.button>
+                                    <motion.button
+                                        type="submit"
+                                        disabled={isLoading}
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        className="w-full bg-blue-600 text-white px-6 py-4 rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center justify-center disabled:opacity-70 mt-6"
+                                    >
+                                        {isLoading ? (
+                                            <span className="flex items-center">
+                                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                </svg>
+                                                Processing...
+                                            </span>
+                                        ) : (
+                                            <>
+                                                Send Message
+                                                <ArrowRightIcon className="w-5 h-5 ml-2" />
+                                            </>
+                                        )}
+                                    </motion.button>
                             </form>
                         )}
                     </motion.div>
