@@ -1,0 +1,137 @@
+    :root {
+      --primary: #1e40af;
+      --secondary: #f3f4f6;
+      --text: #333;
+      --light-text: #6b7280;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: #fff;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .policy-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #e5e7eb;
+      position: relative;
+    }
+
+    .policy-header:after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: var(--primary);
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .policy-title {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .policy-dates {
+      color: var(--light-text);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .policy-logo {
+      max-width: 180px;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin: 2.5rem 0 1rem;
+      font-size: 1.5rem;
+    }
+
+    p,
+    li {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    ol {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .highlight-box {
+      background-color: var(--secondary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .company-info {
+      margin: 1.5rem 0;
+      line-height: 1.8;
+    }
+
+
+    .cookie-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+
+    .cookie-table th,
+    .cookie-table td {
+      padding: 1rem;
+      border: 1px solid #e5e7eb;
+      text-align: left;
+    }
+
+    .cookie-table th {
+      background-color: var(--secondary);
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .cookie-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+
+    .consent-management {
+      background-color: var(--secondary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .consent-management h3 {
+      margin-top: 0;
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding: 3rem 2rem;
+      }
+
+      .policy-header {
+        margin-bottom: 4rem;
+      }
+    }

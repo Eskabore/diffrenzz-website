@@ -1,0 +1,68 @@
+:root {
+  --primary: #1e40af;
+  --secondary: #f3f4f6;
+  --text: #333;
+  --light-text: #6b7280;
+}
+
+/* Base layout */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: #fff;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Header block */
+.policy-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+}
+.policy-header::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 4px;
+  background: var(--primary);
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.policy-title   { font-size: 2.5rem; margin-bottom: .5rem; color: var(--primary); }
+.policy-dates   { font-size: .9rem; color: var(--light-text); }
+.policy-logo    { max-width: 180px; margin-bottom: 1.5rem; }
+
+/* Typography */
+h2  { color: var(--primary); margin: 2.5rem 0 1rem; font-size: 1.5rem; }
+p, li { font-size: 1rem; margin-bottom: 1rem; }
+ul, ol { padding-left: 1.5rem; }
+a   { color: var(--primary); text-decoration: underline; }
+
+/* Highlight / Call-out */
+.highlight-box {
+  background: var(--secondary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+/* Contact info */
+.contact-methods {
+  background: var(--secondary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+/* Responsive tweaks */
+@media (min-width: 768px) {
+  body { padding: 3rem 2rem; }
+  .policy-header { margin-bottom: 4rem; }
+}
