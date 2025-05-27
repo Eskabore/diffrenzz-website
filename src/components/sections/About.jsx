@@ -25,7 +25,7 @@ const About = () => {
   ];
 
   return (
-    <motion.section 
+    <motion.section
       id="about"
       initial="hidden"
       whileInView="visible"
@@ -35,21 +35,23 @@ const About = () => {
     >
       <div className="grid lg:grid-cols-2 gap-12 items-center">
         {/* Left Column - Image with Decorative Elements */}
-        <motion.div 
+        <motion.div
           variants={fadeInUp}
           className="relative"
         >
           <div className="relative rounded-xl overflow-hidden shadow-lg aspect-[4/3] bg-gradient-to-br from-blue-100 to-green-50">
-            {/* Placeholder for your image - replace with your actual image */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <UserIcon className="w-32 h-32 text-blue-400 opacity-30" />
-            </div>
-            
+            <Image
+              src="/images/confident.png"
+              alt="Jean-Luc Turquin - Salesforce Consultant"
+              fill
+              className="object-cover"
+            />
+
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-32 h-32 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-green-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
           </div>
-          
+
           {/* Floating stats badge */}
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -68,16 +70,16 @@ const About = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             About <span className="text-blue-600">Diffrenzz</span>
           </h2>
-          
+
           <div className="space-y-6 text-gray-700">
             <p className="text-lg leading-relaxed">
               I'm a certified Salesforce consultant dedicated to helping businesses transform their operations through tailored CRM solutions. With a passion for automation and efficiency, I bridge the gap between business needs and technical implementation.
             </p>
-            
+
             <p className="text-lg leading-relaxed">
               My approach combines deep technical expertise with clear communication, ensuring you understand every step of the process while I handle the complex Salesforce configurations behind the scenes.
             </p>
-            
+
             <div className="grid grid-cols-2 gap-4 mt-8">
               {stats.map((stat, index) => (
                 <motion.div
@@ -102,7 +104,7 @@ const About = () => {
       </div>
 
       {/* Certification Badges */}
-      <motion.div 
+      <motion.div
         variants={fadeInUp}
         className="mt-16 flex flex-wrap justify-center gap-6"
       >
