@@ -33,12 +33,12 @@ const Header = () => {
   };
 
   const menuVariants = {
-    open: { 
+    open: {
       opacity: 1,
       y: 0,
       transition: { type: "spring", stiffness: 300, damping: 30 }
     },
-    closed: { 
+    closed: {
       opacity: 0,
       y: -20,
       transition: { duration: 0.2 }
@@ -51,23 +51,22 @@ const Header = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-white/80 backdrop-blur-sm"
-        }`}
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-white/80 backdrop-blur-sm"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-3">
-            <motion.a 
+            <motion.a
               href="#"
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-2"
             >
-              <img 
-                src="/newLogo512.svg" 
-                alt="Diffrenzz Logo" 
-                className="h-10 w-10 transition-transform hover:rotate-[15deg]" 
+              <img
+                src="/newLogo512.svg"
+                alt="Diffrenzz Logo"
+                className="h-10 w-10 transition-transform hover:rotate-[15deg]"
               />
-              <motion.h1 
+              <motion.h1
                 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent"
                 whileHover={{ scale: 1.02 }}
               >
@@ -87,7 +86,7 @@ const Header = () => {
                   className="relative px-1 py-2 text-gray-700 hover:text-blue-600 group transition-colors font-medium"
                 >
                   {item.name}
-                  <motion.span 
+                  <motion.span
                     className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600"
                     initial={{ width: 0 }}
                     whileHover={{ width: "100%" }}
