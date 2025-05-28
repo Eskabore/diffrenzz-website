@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { UserIcon, ChartBarIcon, CheckBadgeIcon, ClockIcon } from "@heroicons/react/24/outline";
+import React from "react";
 
 const About = () => {
   const fadeInUp = {
@@ -40,8 +41,8 @@ const About = () => {
           className="relative"
         >
           <div className="relative rounded-xl overflow-hidden shadow-lg aspect-[4/3] bg-gradient-to-br from-blue-100 to-green-50">
-            <Image
-              src="/images/confident.png"
+            <img
+              src="images/confident.png"
               alt="Jean-Luc Turquin - Salesforce Consultant"
               fill
               className="object-cover"
