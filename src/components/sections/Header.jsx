@@ -1,8 +1,10 @@
 import { motion, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState(() =>
@@ -35,11 +37,11 @@ const Header = () => {
   });
 
   const navItems = [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Projects", href: "#projects" },
-    { name: "Book", href: "#booking" },
-    { name: "Contact", href: "#contact" },
+    { key: "about", href: "#about" },
+    { key: "services", href: "#services" },
+    { key: "projects", href: "#projects" },
+    { key: "book", href: "#booking" },
+    { key: "contact", href: "#contact" },
   ];
 
   const fadeIn = {
@@ -89,10 +91,10 @@ const Header = () => {
               </motion.h1>
             </motion.a>
 
-            <nav className="hidden md:flex space-x-8">
+            <nav className="hidden md:flex space-x-8 items-center">
               {navItems.map((item, index) => (
                 <motion.a
-                  key={item.name}
+                  key={item.key}
                   href={item.href}
                   initial="hidden"
                   animate="visible"
@@ -100,15 +102,24 @@ const Header = () => {
                   custom={index}
                   className="relative px-1 py-2 text-gray-700 hover:text-blue-600 group transition-colors font-medium"
                 >
-                  {item.name}
+                  {t(`nav.${item.key}`)}
                   <motion.span
                     className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600"
                     initial={{ width: 0 }}
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    whileHover={{ width: '100%' }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
                   />
                 </motion.a>
               ))}
+              <select
+                className="ml-4 border border-gray-300 rounded p-1 text-sm"
+                value={i18n.language}
+                onChange={(e) => i18n.changeLanguage(e.target.value)}
+              >
+                <option value="en">EN</option>
+                <option value="fr">FR</option>
+                <option value="de">DE</option>
+              </select>
             </nav>
 
             <button
@@ -153,14 +164,14 @@ const Header = () => {
         <div className="px-6 py-4 space-y-4">
           {navItems.map((item) => (
             <motion.a
-              key={item.name}
+              key={item.key}
               href={item.href}
               className="block px-4 py-3 text-lg font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
               onClick={() => setMobileMenuOpen(false)}
               whileHover={{ x: 5 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
-              {item.name}
+              {t(`nav.${item.key}`)}
             </motion.a>
           ))}
           <button
@@ -169,14 +180,26 @@ const Header = () => {
           >
             {theme === 'dark' ? (
               <>
-                <SunIcon className="w-5 h-5" /> <span>Light mode</span>
+                <SunIcon className="w-5 h-5" /> <span>{t('nav.light')}</span>
               </>
             ) : (
               <>
-                <MoonIcon className="w-5 h-5" /> <span>Dark mode</span>
+                <MoonIcon className="w-5 h-5" /> <span>{t('nav.dark')}</span>
               </>
             )}
           </button>
+          <select
+            className="mt-4 w-full border border-gray-300 rounded p-2 text-sm"
+            value={i18n.language}
+            onChange={(e) => {
+              i18n.changeLanguage(e.target.value);
+              setMobileMenuOpen(false);
+            }}
+          >
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+            <option value="de">DE</option>
+          </select>
         </div>
       </motion.div>
     </>

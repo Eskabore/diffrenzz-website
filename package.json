@@ -20,6 +20,8 @@
     "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.56.3",
     "react-hot-toast": "^2.5.2",
+    "i18next": "^23.11.5",
+    "react-i18next": "^13.2.2",
     "swiper": "^11.2.6",
     "v3": "^0.0.0"
   },

@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "about": "À propos",
+    "services": "Services",
+    "projects": "Projets",
+    "book": "Réserver",
+    "contact": "Contact",
+    "light": "Mode clair",
+    "dark": "Mode sombre"
+  },
+  "hero": {
+    "title": "Solutions Salesforce intelligentes",
+    "subtitle": "Développement, automatisation et conseil sur mesure pour des résultats concrets",
+    "cta": "Discutons"
+  },
+  "services": {
+    "title": "Services Salesforce",
+    "subtitle": "Des solutions complètes adaptées à vos objectifs",
+    "getStarted": "Commencer",
+    "items": {
+      "admin": {
+        "title": "Administration Salesforce",
+        "desc": "Configuration professionnelle et gestion des utilisateurs adaptées à vos processus."
+      },
+      "flow": {
+        "title": "Automatisation Flow",
+        "desc": "Création de workflows efficaces pour réduire les tâches manuelles."
+      },
+      "dev": {
+        "title": "Développement Apex & LWC",
+        "desc": "Solutions personnalisées avec les outils de développement Salesforce."
+      },
+      "api": {
+        "title": "Intégrations API",
+        "desc": "Connexion fluide de Salesforce à vos autres systèmes."
+      },
+      "experience": {
+        "title": "Experience Cloud",
+        "desc": "Portails clients et partenaires attractifs."
+      },
+      "analytics": {
+        "title": "Analyses & Tableaux de bord",
+        "desc": "Exploitez vos données avec de puissantes visualisations."
+      }
+    }
+  },
+  "about": {
+    "title": "À propos de <0>Diffrenzz</0>",
+    "p1": "Consultant Salesforce certifié, j'aide les entreprises à transformer leurs opérations grâce à des solutions CRM adaptées.",
+    "p2": "Mon approche allie expertise technique et communication claire pour vous accompagner sereinement.",
+    "stats": {
+      "years": "Années d'expérience",
+      "projects": "Projets réalisés",
+      "satisfaction": "Satisfaction client",
+      "support": "Support disponible",
+      "badge": "Années sur Salesforce"
+    },
+    "certs": [
+      "Administrateur Salesforce certifié",
+      "Platform App Builder",
+      "Spécialiste Flow",
+      "Consultant Experience Cloud"
+    ]
+  },
+  "contact": {
+    "title": "Entrons en <0>contact</0>",
+    "subtitle": "Un projet Salesforce ou besoin d'un avis ? Contactez-nous.",
+    "sendMessage": "Envoyer un message",
+    "messageSent": "Message envoyé !",
+    "response": "Nous reviendrons vers vous sous 24h.",
+    "emailUs": "Nous écrire",
+    "callUs": "Nous appeler",
+    "workingHours": "Horaires",
+    "weekdays": "Lundi - Vendredi : 9h - 18h CET",
+    "weekends": "Week-end : assistance d'urgence uniquement"
+  },
+  "footer": {
+    "privacy": "Politique de confidentialité",
+    "cookie": "Politique relative aux cookies",
+    "terms": "Conditions d'utilisation"
+  }
+}

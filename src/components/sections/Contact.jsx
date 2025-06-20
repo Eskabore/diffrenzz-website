@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation, Trans } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import ReCAPTCHA from 'react-google-recaptcha';
 import {
@@ -12,6 +13,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 const Contact = () => {
+    const { t } = useTranslation();
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [recaptchaToken, setRecaptchaToken] = useState(null);
@@ -116,13 +118,13 @@ const Contact = () => {
     const contactMethods = [
         {
             icon: <EnvelopeIcon className="w-6 h-6 text-blue-600" />,
-            title: "Email Us",
+            title: t('contact.emailUs'),
             description: "desk@diffrenzz.com",
             action: "mailto:desk@diffrenzz.com"
         },
         {
             icon: <PhoneIcon className="w-6 h-6 text-green-600" />,
-            title: "Call Us",
+            title: t('contact.callUs'),
             description: "+49 (0) 1 6344-82005",
             action: "tel:+491634482005"
         }
@@ -143,10 +145,10 @@ const Contact = () => {
                     className="text-center mb-8"
                 >
                     <h2 className="text-3xl font-bold mb-4">
-                        Let's <span className="text-blue-400">Connect</span>
+                        <Trans i18nKey="contact.title">Let's <span className="text-blue-400">Connect</span></Trans>
                     </h2>
                     <p className="text-lg text-gray-300">
-                        Have a Salesforce project or need expert advice? Reach out today.
+                        {t('contact.subtitle')}
                     </p>
                 </motion.div>
 
@@ -156,7 +158,7 @@ const Contact = () => {
                         variants={fadeInUp}
                         className="bg-gray-800 p-6 rounded-xl shadow-lg lg:w-2/3"
                     >
-                        <h3 className="text-xl font-bold mb-4">Send Us a Message</h3>
+                        <h3 className="text-xl font-bold mb-4">{t('contact.sendMessage')}</h3>
 
                         {isSubmitted ? (
                             <motion.div
@@ -166,8 +168,8 @@ const Contact = () => {
                             >
                                 <CheckCircleIcon className="w-5 h-5 flex-shrink-0" />
                                 <div>
-                                    <h4 className="font-bold">Message Sent Successfully!</h4>
-                                    <p>We'll get back to you within 24 hours.</p>
+                                    <h4 className="font-bold">{t('contact.messageSent')}</h4>
+                                    <p>{t('contact.response')}</p>
                                 </div>
                             </motion.div>
                         ) : (
@@ -376,9 +378,9 @@ const Contact = () => {
                             <div className="flex items-start space-x-3">
                                 <ClockIcon className="w-6 h-6 text-blue-400 flex-shrink-0" />
                                 <div>
-                                    <h4 className="font-bold mb-2">Working Hours</h4>
-                                    <p className="text-gray-300 mb-1">Monday - Friday: 9am - 6pm CET</p>
-                                    <p className="text-gray-300">Weekends: Emergency support only</p>
+                                    <h4 className="font-bold mb-2">{t('contact.workingHours')}</h4>
+                                    <p className="text-gray-300 mb-1">{t('contact.weekdays')}</p>
+                                    <p className="text-gray-300">{t('contact.weekends')}</p>
                                 </div>
                             </div>
                         </motion.div>
