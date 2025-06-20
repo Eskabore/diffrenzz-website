@@ -1,6 +1,44 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function HomePage() {
+  const images = [
+    'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=60',
+    'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=60',
+    'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1400&q=60',
+  ]
+
+  const alts = [
+    'Dashboard screenshot',
+    'Team collaborating',
+    'Customer service call',
+  ]
+
+  const [menuOpen, setMenuOpen] = useState(false) // mobile nav state
+  const [slide, setSlide] = useState(0) // hero slideshow index
+  const heroRef = useRef(null)
+  const prefersReduced =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  useEffect(() => {
+    if (prefersReduced) return // honor reduced motion
+    const timer = setInterval(() => {
+      setSlide((s) => (s + 1) % images.length)
+    }, 6000)
+    return () => clearInterval(timer)
+  }, [prefersReduced])
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (!heroRef.current) return
+      const y = window.scrollY
+      heroRef.current.style.transform = `translateY(${y * -0.1}px) scale(${1 +
+        y / 1000})`
+    }
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <div className="font-sans text-gray-800">
       {/* Header */}
@@ -9,20 +47,53 @@ export default function HomePage() {
           <img src="/android-chrome-512x512.png" alt="Diffrenzz Logo" className="h-10 w-10" />
           <h1 className="text-xl font-bold">Diffrenzz</h1>
         </div>
-        <nav className="space-x-6 hidden md:block">
-          <a href="#about" className="hover:text-blue-500">About</a>
-          <a href="#services" className="hover:text-blue-500">Services</a>
-          <a href="#projects" className="hover:text-blue-500">Projects</a>
-          <a href="#booking" className="hover:text-blue-500">Book</a>
-          <a href="#contact" className="hover:text-blue-500">Contact</a>
+        <button
+          className="md:hidden p-2"
+          aria-label="Toggle navigation"
+          onClick={() => setMenuOpen((o) => !o)}
+        >
+          <span className="block w-6 border-t border-gray-700 mb-1" />
+          <span className="block w-6 border-t border-gray-700 mb-1" />
+          <span className="block w-6 border-t border-gray-700" />
+        </button>
+        <nav
+          className={`space-x-6 ${menuOpen ? 'block' : 'hidden'} md:block`}
+          onClick={() => setMenuOpen(false)}
+        >
+          <a href="#about" className="hover:text-blue-500 block md:inline">About</a>
+          <a href="#services" className="hover:text-blue-500 block md:inline">Services</a>
+          <a href="#projects" className="hover:text-blue-500 block md:inline">Projects</a>
+          <a href="#booking" className="hover:text-blue-500 block md:inline">Book</a>
+          <a href="#contact" className="hover:text-blue-500 block md:inline">Contact</a>
         </nav>
       </header>
 
       {/* Hero */}
-      <section className="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 via-green-400 to-yellow-300 text-white text-center px-4">
-        <h2 className="text-4xl md:text-6xl font-bold mb-4">Smart Salesforce Solutions</h2>
-        <p className="text-lg md:text-2xl mb-6">Tailored development, automation & consulting</p>
-        <a href="#contact" className="bg-white text-gray-900 px-6 py-3 rounded-full shadow hover:bg-gray-100 transition">Let’s Talk</a>
+      <section
+        className="relative h-screen flex flex-col justify-center items-center text-white text-center overflow-hidden px-4"
+        aria-label={alts[slide]}
+      >
+        {images.map((img, i) => (
+          <img
+            key={img}
+            src={img}
+            loading="lazy" // performance
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              i === slide ? 'opacity-100' : 'opacity-0'
+            }`}
+            alt=""
+          />
+        ))}
+        <div ref={heroRef} className="relative z-10">
+          <h2 className="text-4xl md:text-6xl font-bold mb-4">Smart Salesforce Solutions</h2>
+          <p className="text-lg md:text-2xl mb-6">Tailored development, automation & consulting</p>
+          <a
+            href="#contact"
+            className="bg-white text-gray-900 px-6 py-3 rounded-full shadow hover:shadow-lg focus:shadow-lg transition-transform transform hover:-translate-y-1 focus:-translate-y-1" // lift on hover
+          >
+            Let’s Talk
+          </a>
+        </div>
       </section>
 
       {/* About */}
