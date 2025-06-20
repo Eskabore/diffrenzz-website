@@ -6,26 +6,26 @@ import 'swiper/css/pagination';
 
 const testimonials = [
   {
-    name: 'Acme Corp',
-    role: 'Operations Lead',
+    name: 'Sophie Wagner',
+    role: 'Head of Operations, Klarview Solutions',
     feedback:
-      'Diffrenzz transformed our Salesforce setup and automated key processes. Productivity has never been higher.',
+      'Working with Diffrenzz completely reshaped how we use Salesforce. Our workflows are smoother, reporting is clearer, and the automation saves us hours every week. They felt like part of our team.',
     avatar:
       'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=80&q=80'
   },
   {
-    name: 'Globex Inc.',
-    role: 'CTO',
+    name: 'Liam Patel',
+    role: 'CTO, Brightline Technologies',
     feedback:
-      'Their expertise helped us integrate multiple systems seamlessly. The results were immediate and impressive.',
+      'Diffrenzz delivered beyond our expectations. They connected Salesforce to our internal tools in record time, and the integration has been rock solid. Communication was transparent at every step.',
     avatar:
       'https://images.unsplash.com/photo-1544723495-432537d1f88f?auto=format&fit=crop&w=80&q=80'
   },
   {
-    name: 'Nonprofit XYZ',
-    role: 'Director',
+    name: 'Emily Schneider',
+    role: 'Director of Development, HopeBridge Foundation',
     feedback:
-      'Thanks to Diffrenzz we can manage donors twice as efficiently. Great communication and results.',
+      'Diffrenzz helped us streamline donor management and reporting. Their team was responsive, detail-oriented, and truly understood the needs of a nonprofit like ours.',
     avatar:
       'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=80&q=80'
   }
