@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { BoltIcon, CogIcon, CodeBracketIcon, LinkIcon, GlobeAltIcon, ChartBarIcon } from "@heroicons/react/24/outline";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 
 const Services = () => {
   const { t } = useTranslation();
