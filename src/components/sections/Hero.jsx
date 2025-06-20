@@ -112,7 +112,7 @@ const Hero = () => {
           style={{ scale: titleScale }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight will-change-transform"
         >
-          Smart <span className="text-yellow-300">Salesforce</span> Solutions
+          <span className="typewriter">Smart Salesforce Solutions</span>
         </motion.h1>
 
         <motion.p

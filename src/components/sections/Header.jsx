@@ -1,10 +1,25 @@
 import { motion, useScroll, useSpring, useMotionValueEvent } from "framer-motion";
-import { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useState, useEffect } from "react";
+import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [theme, setTheme] = useState(() =>
+    localStorage.getItem('theme') || 'dark'
+  );
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    const body = document.body;
+    body.classList.remove('bg-gray-900', 'text-gray-100', 'bg-white', 'text-gray-900');
+    if (theme === 'dark') {
+      body.classList.add('bg-gray-900', 'text-gray-100');
+    } else {
+      body.classList.add('bg-white', 'text-gray-900');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   // Get both scrollY and scrollYProgress
   const { scrollY, scrollYProgress } = useScroll();
@@ -96,6 +111,18 @@ const Header = () => {
               ))}
             </nav>
 
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              aria-label="Toggle theme"
+              className="hidden md:block p-2 rounded-md text-gray-700 hover:bg-gray-100"
+            >
+              {theme === 'dark' ? (
+                <SunIcon className="w-6 h-6" />
+              ) : (
+                <MoonIcon className="w-6 h-6" />
+              )}
+            </button>
+
             <motion.button
               whileTap={{ scale: 0.95 }}
               className="md:hidden p-2 rounded-md focus:outline-none text-gray-700"
@@ -136,6 +163,20 @@ const Header = () => {
               {item.name}
             </motion.a>
           ))}
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="mt-2 p-2 rounded-md bg-gray-100 flex items-center space-x-2"
+          >
+            {theme === 'dark' ? (
+              <>
+                <SunIcon className="w-5 h-5" /> <span>Light mode</span>
+              </>
+            ) : (
+              <>
+                <MoonIcon className="w-5 h-5" /> <span>Dark mode</span>
+              </>
+            )}
+          </button>
         </div>
       </motion.div>
     </>
