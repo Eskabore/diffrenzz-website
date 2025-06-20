@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "book": "Book",
+    "contact": "Contact",
+    "light": "Light mode",
+    "dark": "Dark mode"
+  },
+  "hero": {
+    "title": "Smart Salesforce Solutions",
+    "subtitle": "Tailored development, automation & consulting that drives results",
+    "cta": "Let's Talk"
+  },
+  "services": {
+    "title": "Salesforce Services",
+    "subtitle": "Comprehensive solutions tailored to your business needs and objectives",
+    "getStarted": "Get started",
+    "items": {
+      "admin": {
+        "title": "Salesforce Admin & Setup",
+        "desc": "Professional configuration, user management, and security settings tailored to your business processes."
+      },
+      "flow": {
+        "title": "Flow Automation",
+        "desc": "Build efficient workflows to automate business processes and reduce manual work."
+      },
+      "dev": {
+        "title": "Apex & LWC Development",
+        "desc": "Custom solutions built with Salesforce's powerful development tools for complex requirements."
+      },
+      "api": {
+        "title": "API Integrations",
+        "desc": "Seamlessly connect Salesforce with your other business systems and applications."
+      },
+      "experience": {
+        "title": "Experience Cloud",
+        "desc": "Build engaging customer and partner portals with personalized experiences."
+      },
+      "analytics": {
+        "title": "Analytics & Dashboards",
+        "desc": "Transform your data into actionable insights with powerful visualizations."
+      }
+    }
+  },
+  "about": {
+    "title": "About <0>Diffrenzz</0>",
+    "p1": "I'm a certified Salesforce consultant dedicated to helping businesses transform their operations through tailored CRM solutions. With a passion for automation and efficiency, I bridge the gap between business needs and technical implementation.",
+    "p2": "My approach combines deep technical expertise with clear communication, ensuring you understand every step of the process while I handle the complex Salesforce configurations behind the scenes.",
+    "stats": {
+      "years": "Years Experience",
+      "projects": "Projects Completed",
+      "satisfaction": "Client Satisfaction",
+      "support": "Support Available",
+      "badge": "Years in Salesforce"
+    },
+    "certs": [
+      "Salesforce Certified Administrator",
+      "Platform App Builder",
+      "Flow Automation Specialist",
+      "Experience Cloud Consultant"
+    ]
+  },
+  "contact": {
+    "title": "Let's <0>Connect</0>",
+    "subtitle": "Have a Salesforce project or need expert advice? Reach out today.",
+    "sendMessage": "Send Us a Message",
+    "messageSent": "Message Sent Successfully!",
+    "response": "We'll get back to you within 24 hours.",
+    "emailUs": "Email Us",
+    "callUs": "Call Us",
+    "workingHours": "Working Hours",
+    "weekdays": "Monday - Friday: 9am - 6pm CET",
+    "weekends": "Weekends: Emergency support only"
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "cookie": "Cookie Policy",
+    "terms": "Terms of Service"
+  }
+}

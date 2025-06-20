@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { BoltIcon, CogIcon, CodeBracketIcon, LinkIcon, GlobeAltIcon, ChartBarIcon } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 
 const Services = () => {
+  const { t } = useTranslation();
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
@@ -19,38 +21,38 @@ const Services = () => {
 
   const services = [
     {
-      title: "Salesforce Admin & Setup",
-      description: "Professional configuration, user management, and security settings tailored to your business processes.",
+      title: t('services.items.admin.title'),
+      description: t('services.items.admin.desc'),
       icon: <CogIcon className="w-10 h-10 text-blue-600" />,
       color: "bg-blue-50"
     },
     {
-      title: "Flow Automation",
-      description: "Build efficient workflows to automate business processes and reduce manual work.",
+      title: t('services.items.flow.title'),
+      description: t('services.items.flow.desc'),
       icon: <BoltIcon className="w-10 h-10 text-green-600" />,
       color: "bg-green-50"
     },
     {
-      title: "Apex & LWC Development",
-      description: "Custom solutions built with Salesforce's powerful development tools for complex requirements.",
+      title: t('services.items.dev.title'),
+      description: t('services.items.dev.desc'),
       icon: <CodeBracketIcon className="w-10 h-10 text-purple-600" />,
       color: "bg-purple-50"
     },
     {
-      title: "API Integrations",
-      description: "Seamlessly connect Salesforce with your other business systems and applications.",
+      title: t('services.items.api.title'),
+      description: t('services.items.api.desc'),
       icon: <LinkIcon className="w-10 h-10 text-red-600" />,
       color: "bg-red-50"
     },
     {
-      title: "Experience Cloud",
-      description: "Build engaging customer and partner portals with personalized experiences.",
+      title: t('services.items.experience.title'),
+      description: t('services.items.experience.desc'),
       icon: <GlobeAltIcon className="w-10 h-10 text-teal-600" />,
       color: "bg-teal-50"
     },
     {
-      title: "Analytics & Dashboards",
-      description: "Transform your data into actionable insights with powerful visualizations.",
+      title: t('services.items.analytics.title'),
+      description: t('services.items.analytics.desc'),
       icon: <ChartBarIcon className="w-10 h-10 text-orange-600" />,
       color: "bg-orange-50"
     }
@@ -68,10 +70,10 @@ const Services = () => {
       <div className="max-w-7xl mx-auto">
         <motion.div variants={fadeInUp} className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Salesforce <span className="text-blue-600">Services</span>
+            <Trans i18nKey="services.title">Salesforce <span className="text-blue-600">Services</span></Trans>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Comprehensive solutions tailored to your business needs and objectives
+            {t('services.subtitle')}
           </p>
         </motion.div>
 
@@ -109,7 +111,7 @@ const Services = () => {
                   whileHover={{ x: 5 }}
                   className="inline-flex items-center text-blue-600 font-medium"
                 >
-                  Get started
+                  {t('services.getStarted')}
                   <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>

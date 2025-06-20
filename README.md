@@ -13,3 +13,16 @@ Built with:
 ```bash
 npm install
 npm run dev
+```
+
+## 🌍 Internationalization
+
+Translations use **react-i18next** with English as the fallback language. Use the header's language selector to switch languages.
+
+## 🔨 Build
+
+Create an optimized production build:
+
+```bash
+npm run build
+```

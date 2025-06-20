@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
   const fadeInUp = {
@@ -31,6 +32,7 @@ const Hero = () => {
   ];
 
   const [index, setIndex] = useState(0);
+  const { t } = useTranslation();
 
   const { scrollY } = useScroll();
   // slight scale on scroll for parallax effect
@@ -112,7 +114,7 @@ const Hero = () => {
           style={{ scale: titleScale }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight will-change-transform"
         >
-          <span className="typewriter">Smart Salesforce Solutions</span>
+          <span className="typewriter">{t('hero.title')}</span>
         </motion.h1>
 
         <motion.p
@@ -120,7 +122,7 @@ const Hero = () => {
           style={{ y: textY }}
           className="text-xl md:text-2xl lg:text-3xl mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed will-change-transform"
         >
-          Tailored development, automation & consulting that drives results
+          {t('hero.subtitle')}
         </motion.p>
 
         <motion.div variants={fadeInUp}>
@@ -139,7 +141,7 @@ const Hero = () => {
             }}
             className="inline-block bg-white text-gray-900 px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white"
           >
-            Let's Talk
+            {t('hero.cta')}
           </motion.a>
         </motion.div>
       </div>

@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { UserIcon, ChartBarIcon, CheckBadgeIcon, ClockIcon } from "@heroicons/react/24/outline";
 import React from "react";
+import { useTranslation, Trans } from "react-i18next";
 
 const About = () => {
+  const { t } = useTranslation();
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
@@ -19,10 +21,10 @@ const About = () => {
   };
 
   const stats = [
-    { value: "5+", label: "Years Experience", icon: <ClockIcon className="w-6 h-6" /> },
-    { value: "50+", label: "Projects Completed", icon: <CheckBadgeIcon className="w-6 h-6" /> },
-    { value: "100%", label: "Client Satisfaction", icon: <UserIcon className="w-6 h-6" /> },
-    { value: "24/7", label: "Support Available", icon: <ChartBarIcon className="w-6 h-6" /> }
+    { value: "5+", label: t('about.stats.years'), icon: <ClockIcon className="w-6 h-6" /> },
+    { value: "50+", label: t('about.stats.projects'), icon: <CheckBadgeIcon className="w-6 h-6" /> },
+    { value: "100%", label: t('about.stats.satisfaction'), icon: <UserIcon className="w-6 h-6" /> },
+    { value: "24/7", label: t('about.stats.support'), icon: <ChartBarIcon className="w-6 h-6" /> }
   ];
 
   return (
@@ -62,24 +64,22 @@ const About = () => {
             className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg border border-gray-100"
           >
             <div className="text-3xl font-bold text-blue-600">5+</div>
-            <div className="text-sm font-medium text-gray-600">Years in Salesforce</div>
+            <div className="text-sm font-medium text-gray-600">{t('about.stats.badge')}</div>
           </motion.div>
         </motion.div>
 
         {/* Right Column - Content */}
         <motion.div variants={fadeInUp}>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            About <span className="text-blue-600">Diffrenzz</span>
+            <Trans i18nKey="about.title">
+              About <span className="text-blue-600">Diffrenzz</span>
+            </Trans>
           </h2>
 
           <div className="space-y-6 text-gray-700">
-            <p className="text-lg leading-relaxed">
-              I'm a certified Salesforce consultant dedicated to helping businesses transform their operations through tailored CRM solutions. With a passion for automation and efficiency, I bridge the gap between business needs and technical implementation.
-            </p>
+            <p className="text-lg leading-relaxed">{t('about.p1')}</p>
 
-            <p className="text-lg leading-relaxed">
-              My approach combines deep technical expertise with clear communication, ensuring you understand every step of the process while I handle the complex Salesforce configurations behind the scenes.
-            </p>
+            <p className="text-lg leading-relaxed">{t('about.p2')}</p>
 
             <div className="grid grid-cols-2 gap-4 mt-8">
               {stats.map((stat, index) => (
@@ -109,12 +109,7 @@ const About = () => {
         variants={fadeInUp}
         className="mt-16 flex flex-wrap justify-center gap-6"
       >
-        {[
-          "Salesforce Certified Administrator",
-          "Platform App Builder",
-          "Flow Automation Specialist",
-          "Experience Cloud Consultant"
-        ].map((cert, index) => (
+        {t('about.certs', { returnObjects: true }).map((cert, index) => (
           <motion.div
             key={index}
             whileHover={{ scale: 1.05 }}
