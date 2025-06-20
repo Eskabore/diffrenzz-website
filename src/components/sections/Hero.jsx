@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
   const fadeInUp = {
@@ -22,18 +23,58 @@ const Hero = () => {
     }
   };
 
+  // slideshow images - remote URLs keep bundle small
+  const images = [
+    "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1350&q=80",
+    "https://images.unsplash.com/photo-1581276879432-15b80fb141a0?auto=format&fit=crop&w=1350&q=80",
+    "https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=1350&q=80",
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  const { scrollY } = useScroll();
+  // slight scale on scroll for parallax effect
+  const titleScale = useTransform(scrollY, [0, 300], [1, 1.1]);
+  const textY = useTransform(scrollY, [0, 300], [0, -30]);
+
+  useEffect(() => {
+    // respect prefers-reduced-motion
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    // rotate image every 6s
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % images.length);
+    }, 6000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <motion.section
+      aria-label="Slideshow of Salesforce themed background images"
       initial="hidden"
       animate="visible"
       variants={staggerContainer}
       className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-20"
       style={{ zIndex: 0 }}
     >
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-green-500 to-teal-400 -z-10"
+      {/* Gradient base */}
+      <div
+        className="absolute inset-0 bg-gradient-to-br from-blue-600 via-green-500 to-teal-400 -z-10"
         style={{ zIndex: -1 }}
       />
+
+      {/* Background slideshow */}
+      <div className="hero-bg" aria-hidden="true">
+        {images.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            loading="lazy"
+            alt=""
+            className={i === index ? "active" : ""}
+          />
+        ))}
+      </div>
 
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -68,14 +109,16 @@ const Hero = () => {
       <div className="relative z-10 max-w-4xl mx-auto px-4">
         <motion.h1
           variants={fadeInUp}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight"
+          style={{ scale: titleScale }}
+          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight will-change-transform"
         >
           Smart <span className="text-yellow-300">Salesforce</span> Solutions
         </motion.h1>
 
         <motion.p
           variants={fadeInUp}
-          className="text-xl md:text-2xl lg:text-3xl mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed"
+          style={{ y: textY }}
+          className="text-xl md:text-2xl lg:text-3xl mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed will-change-transform"
         >
           Tailored development, automation & consulting that drives results
         </motion.p>
@@ -85,6 +128,7 @@ const Hero = () => {
             href="#contact"
             whileHover={{
               scale: 1.05,
+              y: -3,
               boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.15)"
             }}
             whileTap={{ scale: 0.98 }}
@@ -93,7 +137,7 @@ const Hero = () => {
               stiffness: 400,
               damping: 10
             }}
-            className="inline-block bg-white text-gray-900 px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium text-lg"
+            className="inline-block bg-white text-gray-900 px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white"
           >
             Let's Talk
           </motion.a>
