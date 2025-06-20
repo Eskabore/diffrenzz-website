@@ -71,7 +71,7 @@ const About = () => {
         {/* Right Column - Content */}
         <motion.div variants={fadeInUp}>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <Trans i18nKey="about.title">
+            <Trans i18nKey="about.title" components={[<span className="text-blue-600" key="diffrenzz" />]}>
               About <span className="text-blue-600">Diffrenzz</span>
             </Trans>
           </h2>
