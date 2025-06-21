@@ -1,7 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import JumpingBall from "../ui/JumpingBall";
 
 const Hero = () => {
   const fadeInUp = {
@@ -32,12 +33,21 @@ const Hero = () => {
   ];
 
   const [index, setIndex] = useState(0);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const titleRef = useRef(null);
+  const [textWidth, setTextWidth] = useState(0);
+  const [typingDone, setTypingDone] = useState(false);
 
   const { scrollY } = useScroll();
   // slight scale on scroll for parallax effect
   const titleScale = useTransform(scrollY, [0, 300], [1, 1.1]);
   const textY = useTransform(scrollY, [0, 300], [0, -30]);
+
+  // recompute width when language changes
+  useEffect(() => {
+    setTypingDone(false);
+  }, [i18n.language]);
 
   useEffect(() => {
     // respect prefers-reduced-motion
@@ -49,6 +59,25 @@ const Hero = () => {
     }, 6000);
     return () => clearInterval(id);
   }, []);
+
+  useEffect(() => {
+    if (!typingDone) return;
+    const measure = () => {
+      if (titleRef.current) {
+        setTextWidth(titleRef.current.offsetWidth);
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [typingDone, i18n.language]);
+
+  const handleTypingEnd = () => {
+    if (titleRef.current) {
+      setTextWidth(titleRef.current.offsetWidth);
+    }
+    setTypingDone(true);
+  };
 
   return (
     <motion.section
@@ -112,9 +141,16 @@ const Hero = () => {
         <motion.h1
           variants={fadeInUp}
           style={{ scale: titleScale }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight will-change-transform"
+          className="relative inline-block text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight will-change-transform"
         >
-          <span className="typewriter">{t('hero.title')}</span>
+          <span
+            ref={titleRef}
+            onAnimationEnd={handleTypingEnd}
+            className={typingDone ? "typewriter caret-off" : "typewriter"}
+          >
+            {t('hero.title')}
+          </span>
+          {typingDone && <JumpingBall width={textWidth} />}
         </motion.h1>
 
         <motion.p
