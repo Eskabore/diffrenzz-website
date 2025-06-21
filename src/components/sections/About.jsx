@@ -46,7 +46,7 @@ const About = () => {
             <img
               src="images/confident.png"
               alt="Jean-Luc Turquin - Salesforce Consultant"
-              fill
+              loading="lazy"
               className="object-cover"
             />
 
