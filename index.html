@@ -93,6 +93,20 @@
 </head>
 
 <body class="bg-gray-900 text-gray-100">
+  <script>
+    (function() {
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = stored || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+      document.body.classList.remove('bg-gray-900', 'text-gray-100', 'bg-white', 'text-gray-900');
+      if (theme === 'dark') {
+        document.body.classList.add('bg-gray-900', 'text-gray-100');
+      } else {
+        document.body.classList.add('bg-white', 'text-gray-900');
+      }
+    })();
+  </script>
   <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCGRHPNN" height="0" width="0"
