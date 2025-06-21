@@ -69,6 +69,10 @@ html {
   animation: typing 3.2s steps(34, end), blink .75s step-end infinite;
 }
 
+.caret-off {
+  border-right: none;
+}
+
 /* ────────────────────────────────────────────
    Bouncing-ball after typewriter
    (works for any language length)           
