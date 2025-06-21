@@ -18,7 +18,7 @@ const Contact = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [recaptchaToken, setRecaptchaToken] = useState(null);
     const formRef = useRef(null);
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset, setError } = useForm();
     const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
     const xanoEndpoint = import.meta.env.VITE_XANO_ENDPOINT;
 
@@ -78,7 +78,7 @@ const Contact = () => {
                     email: data.email,
                     subject: data.subject,
                     message: data.message,
-                    gdprConsent: data.gdprConsent,
+                    gdpr_consent: data.gdprConsent,
                     consentTimestamp: new Date().toISOString(),
                     recaptchaToken,
                     userAgent: navigator.userAgent,
