@@ -145,7 +145,7 @@ const Contact = () => {
                     className="text-center mb-8"
                 >
                     <h2 className="text-3xl font-bold mb-4">
-                        <Trans i18nKey="contact.title">Let's <span className="text-blue-400">Connect</span></Trans>
+                        <Trans i18nKey="contact.title" components={[<span className="text-blue-400"  key="connect" />]}>Let's <span className="text-blue-400">Connect</span></Trans>
                     </h2>
                     <p className="text-lg text-gray-300">
                         {t('contact.subtitle')}
