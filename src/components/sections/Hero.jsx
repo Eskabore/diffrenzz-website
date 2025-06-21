@@ -155,7 +155,7 @@ const Hero = () => {
           opacity: [1, 0.5, 1]
         }}
         transition={{
-          duration: 2,
+          duration: 4,
           repeat: Infinity,
           ease: "easeInOut"
         }}
